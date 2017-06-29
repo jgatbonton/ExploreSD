@@ -3,7 +3,6 @@ var app = express();
 
 var config = require('./locations.json');
 
-
 app.use(express.static('public'))
 
 app.get('/', function (req, res) {
@@ -17,9 +16,10 @@ app.get('/locations', function (req, res) {
    res.send(config);
 })
 
+
 var server = app.listen(8080, function () {
    var host = server.address().address
-   var port = server.address().port
+   var port = server.address().port || process.env.PORT
 
    console.log("Example app listening at http://%s:%s", host, port)
 })
